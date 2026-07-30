@@ -13,14 +13,15 @@ aiofiles==25.1.0
 
 # Image processing - pinned to versions verified via the image_utils test suite.
 pillow==12.2.0
-opencv-python-headless==5.0.0.93
-numpy==2.4.6
+opencv-python-headless==4.10.0.84
+
 
 # ML training/inference (ml_model/train.py) - untested in this environment (TensorFlow
 # is a large install); left as minimum-version bounds rather than exact pins so pip's
 # resolver can pick versions mutually compatible with numpy 2.x above instead of being
 # forced into a combination nobody has actually verified.
-tensorflow>=2.18,<2.21
+numpy==1.26.4
+tensorflow==2.19.0
 scikit-learn>=1.5,<1.8
 matplotlib>=3.9,<3.11
 seaborn>=0.13,<0.14
