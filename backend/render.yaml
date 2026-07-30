@@ -1,0 +1,38 @@
+services:
+  - type: web
+    name: plant-disease-detection-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/v1/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.11.9
+      - key: APP_NAME
+        value: Plant Disease Detection System
+      - key: DEBUG
+        value: "False"
+      - key: API_V1_PREFIX
+        value: /api/v1
+      - key: ALLOWED_ORIGINS
+        sync: false
+      - key: MONGODB_URI
+        sync: false
+      - key: MONGODB_DB_NAME
+        value: plant_disease_db
+      - key: MODEL_PATH
+        value: ml_model/saved_model/plant_disease_model.keras
+      - key: CLASS_NAMES_PATH
+        value: ml_model/saved_model/class_names.json
+      - key: DISEASE_INFO_PATH
+        value: ml_model/saved_model/disease_info.json
+      - key: IMAGE_SIZE
+        value: "224"
+      - key: UPLOAD_DIR
+        value: uploads
+      - key: MAX_UPLOAD_SIZE_MB
+        value: "10"
+      - key: LOG_LEVEL
+        value: INFO
